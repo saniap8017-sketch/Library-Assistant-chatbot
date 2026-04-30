@@ -2,121 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Library</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #667eea, #764ba2);
-      color: #333;
-    }
-
-    header {
-      text-align: center;
-      padding: 30px;
-      color: white;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 5px;
-    }
-
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .book {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-
-    .book:hover {
-      transform: translateY(-5px);
-    }
-
-    .book h3 {
-      margin: 0 0 10px;
-      color: #444;
-    }
-
-    .book p {
-      margin: 0;
-      color: #777;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      color: white;
-      font-size: 0.9rem;
-    }
-  </style>
+  <title>AI Book Assistant</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>📚 Smart Library</h1>
-  <p>Discover books, explore authors & chat instantly</p>
-</header>
+<div class="chat-container">
 
-<div class="container">
-  <div style="grid-column: 1 / -1; text-align:center; background:white; border-radius:15px; padding:30px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
-    <h2 style="margin-bottom:10px;">Welcome to Smart Library</h2>
-    <p style="color:#666; font-size:1.1rem;">
-      Ask our chatbot to find books, explore authors, and get instant help 📚
-    </p>
+  <div class="chat-header">
+    📚 AI Book Assistant
   </div>
+
+  <div class="chat-box" id="chatBox"></div>
+
+  <div class="quick-buttons">
+    <button onclick="quickReply('Show books')">📚 Books</button>
+    <button onclick="quickReply('Recommend')">⭐ Recommend</button>
+    <button onclick="quickReply('Help')">❓ Help</button>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
 </div>
 
-  <div class="book">
-    <h3>The Alchemist</h3>
-    <p>Author: Paulo Coelho</p>
-  </div>
-
-  <div class="book">
-    <h3>Rich Dad Poor Dad</h3>
-    <p>Author: Robert Kiyosaki</p>
-  </div>
-
-  <div class="book">
-    <h3>Atomic Habits</h3>
-    <p>Author: James Clear</p>
-  </div>
-</div>
-
-<footer>
-  © 2026 Smart Library | Powered by Watson Assistant
-</footer>
-
-<!-- Watson Assistant Chatbot -->
-<script>
-  window.watsonAssistantChatOptions = {
-    integrationID: "1ce52ad7-078b-434c-b073-33ca1b8e3005",
-    region: "eu-de",
-    serviceInstanceID: "63df9709-ade0-491a-a2ce-2ffea9612eef",
-    onLoad: async (instance) => { await instance.render(); }
-  };
-  setTimeout(function(){
-    const t=document.createElement('script');
-    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-    document.head.appendChild(t);
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
+  

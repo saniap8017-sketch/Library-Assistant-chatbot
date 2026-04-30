@@ -8,147 +8,173 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    color: #fff;
+:root{
+  --bg:#ffe7cc; /* light orange */
+  --card:#ffffff;
+  --text:#222;
+  --sub:#555;
 }
 
-header {
-    text-align: center;
-    padding: 30px;
+body.dark{
+  --bg:#0f0f0f;
+  --card:#1c1c1c;
+  --text:#fff;
+  --sub:#bbb;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
 }
 
-header p {
-    color: #aaa;
-    font-size: 0.95rem;
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 30px;
 }
 
-.container {
-    column-count: 3;
-    column-gap: 18px;
-    padding: 20px;
+h1{margin:0;}
+
+.toggle-btn{
+  padding:8px 15px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:500;
 }
 
-.card {
-    background: #1c1c1c;
-    margin: 0 0 18px;
-    border-radius: 20px;
-    overflow: hidden;
-    display: inline-block;
-    width: 100%;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.6);
-    transition: all 0.3s ease;
+.container{
+  column-count:3;
+  column-gap:18px;
+  padding:20px;
 }
 
-.card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 35px rgba(0,0,0,0.9);
+.card{
+  background:var(--card);
+  margin:0 0 18px;
+  border-radius:18px;
+  overflow:hidden;
+  display:inline-block;
+  width:100%;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  transition:0.3s;
 }
 
-.card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
+.card:hover{
+  transform:translateY(-5px);
 }
 
-.card-content {
-    padding: 15px;
+.book-img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
 }
 
-.book-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+.card-content{
+  padding:15px;
 }
 
-.author {
-    font-size: 0.85rem;
-    color: #bbb;
-    margin-top: 5px;
+.book-title{
+  font-weight:600;
 }
 
-@media (max-width: 900px) {
-    .container { column-count: 2; }
+.author-box{
+  display:flex;
+  align-items:center;
+  margin-top:10px;
 }
 
-@media (max-width: 600px) {
-    .container { column-count: 1; }
+.author-img{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  margin-right:10px;
 }
+
+.author-name{
+  font-size:0.85rem;
+  color:var(--sub);
+}
+
+.desc{
+  font-size:0.8rem;
+  margin-top:8px;
+  color:var(--sub);
+}
+
+@media(max-width:900px){.container{column-count:2;}}
+@media(max-width:600px){.container{column-count:1;}}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>📚 Book Haven</h1>
-    <p>Discover books that inspire, teach, and transform</p>
+  <h1>📚 Book Haven</h1>
+  <button class="toggle-btn" onclick="toggleMode()">Toggle Dark Mode</button>
 </header>
 
 <div class="container">
 
 <div class="card">
-    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" />
-    <div class="card-content">
-        <div class="book-title">Atomic Habits</div>
-        <div class="author">James Clear</div>
+  <img class="book-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794">
+  <div class="card-content">
+    <div class="book-title">Atomic Habits</div>
+    <div class="author-box">
+      <img class="author-img" src="https://randomuser.me/api/portraits/men/32.jpg">
+      <div class="author-name">James Clear</div>
     </div>
+    <div class="desc">A guide to building good habits and breaking bad ones.</div>
+  </div>
 </div>
 
 <div class="card">
-    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" />
-    <div class="card-content">
-        <div class="book-title">The Alchemist</div>
-        <div class="author">Paulo Coelho</div>
+  <img class="book-img" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f">
+  <div class="card-content">
+    <div class="book-title">The Alchemist</div>
+    <div class="author-box">
+      <img class="author-img" src="https://randomuser.me/api/portraits/men/45.jpg">
+      <div class="author-name">Paulo Coelho</div>
     </div>
+    <div class="desc">A journey of dreams, destiny, and self-discovery.</div>
+  </div>
 </div>
 
 <div class="card">
-    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d" />
-    <div class="card-content">
-        <div class="book-title">Rich Dad Poor Dad</div>
-        <div class="author">Robert Kiyosaki</div>
+  <img class="book-img" src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d">
+  <div class="card-content">
+    <div class="book-title">Rich Dad Poor Dad</div>
+    <div class="author-box">
+      <img class="author-img" src="https://randomuser.me/api/portraits/men/50.jpg">
+      <div class="author-name">Robert Kiyosaki</div>
     </div>
+    <div class="desc">Learn financial literacy and wealth mindset.</div>
+  </div>
 </div>
 
 <div class="card">
-    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353" />
-    <div class="card-content">
-        <div class="book-title">Ikigai</div>
-        <div class="author">Héctor García & Francesc Miralles</div>
+  <img class="book-img" src="https://images.unsplash.com/photo-1516979187457-637abb4f9353">
+  <div class="card-content">
+    <div class="book-title">Ikigai</div>
+    <div class="author-box">
+      <img class="author-img" src="https://randomuser.me/api/portraits/men/60.jpg">
+      <div class="author-name">Héctor García</div>
     </div>
-</div>
-
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66" />
-    <div class="card-content">
-        <div class="book-title">Think and Grow Rich</div>
-        <div class="author">Napoleon Hill</div>
-    </div>
-</div>
-
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" />
-    <div class="card-content">
-        <div class="book-title">Deep Work</div>
-        <div class="author">Cal Newport</div>
-    </div>
-</div>
-
-<div class="card">
-    <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93" />
-    <div class="card-content">
-        <div class="book-title">The Psychology of Money</div>
-        <div class="author">Morgan Housel</div>
-    </div>
+    <div class="desc">Discover purpose and live a longer, happier life.</div>
+  </div>
 </div>
 
 </div>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle('dark');
+}
+</script>
 
 <!-- Watson Assistant Chatbot -->
 <script>

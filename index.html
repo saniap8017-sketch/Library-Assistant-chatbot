@@ -1,34 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI Book Assistant</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Haven</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: #fff;
+}
+
+header {
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.container {
+    column-count: 3;
+    column-gap: 18px;
+    padding: 20px;
+}
+
+.card {
+    background: #1c1c1c;
+    margin: 0 0 18px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.9);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.book-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.author {
+    font-size: 0.85rem;
+    color: #bbb;
+    margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+    .container { column-count: 2; }
+}
+
+@media (max-width: 600px) {
+    .container { column-count: 1; }
+}
+</style>
 </head>
+
 <body>
 
-<div class="chat-container">
+<header>
+    <h1>📚 Book Haven</h1>
+    <p>Discover books that inspire, teach, and transform</p>
+</header>
 
-  <div class="chat-header">
-    📚 AI Book Assistant
-  </div>
+<div class="container">
 
-  <div class="chat-box" id="chatBox"></div>
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" />
+    <div class="card-content">
+        <div class="book-title">Atomic Habits</div>
+        <div class="author">James Clear</div>
+    </div>
+</div>
 
-  <div class="quick-buttons">
-    <button onclick="quickReply('Show books')">📚 Books</button>
-    <button onclick="quickReply('Recommend')">⭐ Recommend</button>
-    <button onclick="quickReply('Help')">❓ Help</button>
-  </div>
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" />
+    <div class="card-content">
+        <div class="book-title">The Alchemist</div>
+        <div class="author">Paulo Coelho</div>
+    </div>
+</div>
 
-  <div class="chat-input">
-    <input type="text" id="userInput" placeholder="Type a message...">
-    <button onclick="sendMessage()">Send</button>
-  </div>
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d" />
+    <div class="card-content">
+        <div class="book-title">Rich Dad Poor Dad</div>
+        <div class="author">Robert Kiyosaki</div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353" />
+    <div class="card-content">
+        <div class="book-title">Ikigai</div>
+        <div class="author">Héctor García & Francesc Miralles</div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66" />
+    <div class="card-content">
+        <div class="book-title">Think and Grow Rich</div>
+        <div class="author">Napoleon Hill</div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" />
+    <div class="card-content">
+        <div class="book-title">Deep Work</div>
+        <div class="author">Cal Newport</div>
+    </div>
+</div>
+
+<div class="card">
+    <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93" />
+    <div class="card-content">
+        <div class="book-title">The Psychology of Money</div>
+        <div class="author">Morgan Housel</div>
+    </div>
+</div>
 
 </div>
 
-<script src="script.js"></script>
+<!-- Watson Assistant Chatbot -->
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "1ce52ad7-078b-434c-b073-33ca1b8e3005",
+    region: "eu-de",
+    serviceInstanceID: "63df9709-ade0-491a-a2ce-2ffea9612eef",
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+
 </body>
 </html>
-  

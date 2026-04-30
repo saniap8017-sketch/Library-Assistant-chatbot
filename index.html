@@ -1,80 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Library</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f4;
-    }
-    header {
-      background: #2c3e50;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    .book {
-      background: #fff;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .book h3 {
-      margin: 0 0 5px;
-    }
-    .book p {
-      margin: 0;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
+const chatBox = document.getElementById("chatBox");
 
-<header>
-  <h1>📚 Book Library</h1>
-  <p>Explore books and authors easily</p>
-</header>
+function addMessage(text, sender) {
+  const msg = document.createElement("div");
+  msg.className = sender;
+  msg.innerText = text;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
 
-<div class="container">
-  <div class="book">
-    <h3>Harry Potter</h3>
-    <p>Author: J.K. Rowling</p>
-  </div>
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const text = input.value;
 
-  <div class="book">
-    <h3>The Alchemist</h3>
-    <p>Author: Paulo Coelho</p>
-  </div>
+  if (!text) return;
 
-  <div class="book">
-    <h3>Rich Dad Poor Dad</h3>
-    <p>Author: Robert Kiyosaki</p>
-  </div>
-</div>
+  addMessage(text, "user");
+  input.value = "";
 
-<!-- Watson Assistant Chatbot -->
-<script>
-  window.watsonAssistantChatOptions = {
-    integrationID: "1ce52ad7-078b-434c-b073-33ca1b8e3005",
-    region: "eu-de",
-    serviceInstanceID: "63df9709-ade0-491a-a2ce-2ffea9612eef",
-    onLoad: async (instance) => { await instance.render(); }
-  };
-  setTimeout(function(){
-    const t=document.createElement('script');
-    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-    document.head.appendChild(t);
+  // Fake response (replace with Watson API)
+  setTimeout(() => {
+    if (text.toLowerCase().includes("book")) {
+      showBooks();
+    } else {
+      addMessage("I didn’t understand 🤔", "bot");
+    }
+  }, 1000);
+}
+
+function showBooks() {
+  const books = [
+    { name: "Harry Potter", author: "J.K. Rowling" },
+    { name: "The Alchemist", author: "Paulo Coelho" },
+    { name: "Rich Dad Poor Dad", author: "Robert Kiyosaki" }
+  ];
+
+  books.forEach(book => {
+    const card = document.createElement("div");
+    card.className = "bot";
+    card.innerHTML = `
+      📚 <b>${book.name}</b><br>
+      👤 ${book.author}
+    `;
+    chatBox.appendChild(card);
   });
-</script>
-
-</body>
-</html>
+}

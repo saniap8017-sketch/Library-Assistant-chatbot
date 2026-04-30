@@ -1,46 +1,119 @@
-const chatBox = document.getElementById("chatBox");
-
-function addMessage(text, sender) {
-  const msg = document.createElement("div");
-  msg.className = sender;
-  msg.innerText = text;
-  chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function sendMessage() {
-  const input = document.getElementById("userInput");
-  const text = input.value;
-
-  if (!text) return;
-
-  addMessage(text, "user");
-  input.value = "";
-
-  // Fake response (replace with Watson API)
-  setTimeout(() => {
-    if (text.toLowerCase().includes("book")) {
-      showBooks();
-    } else {
-      addMessage("I didn’t understand 🤔", "bot");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Library</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: #333;
     }
-  }, 1000);
-}
 
-function showBooks() {
-  const books = [
-    { name: "Harry Potter", author: "J.K. Rowling" },
-    { name: "The Alchemist", author: "Paulo Coelho" },
-    { name: "Rich Dad Poor Dad", author: "Robert Kiyosaki" }
-  ];
+    header {
+      text-align: center;
+      padding: 30px;
+      color: white;
+    }
 
-  books.forEach(book => {
-    const card = document.createElement("div");
-    card.className = "bot";
-    card.innerHTML = `
-      📚 <b>${book.name}</b><br>
-      👤 ${book.author}
-    `;
-    chatBox.appendChild(card);
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .book {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .book:hover {
+      transform: translateY(-5px);
+    }
+
+    .book h3 {
+      margin: 0 0 10px;
+      color: #444;
+    }
+
+    .book p {
+      margin: 0;
+      color: #777;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: white;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📚 Smart Library</h1>
+  <p>Discover books, explore authors & chat instantly</p>
+</header>
+
+<div class="container">
+  <div class="book">
+    <h3>Harry Potter</h3>
+    <p>Author: J.K. Rowling</p>
+  </div>
+
+  <div class="book">
+    <h3>The Alchemist</h3>
+    <p>Author: Paulo Coelho</p>
+  </div>
+
+  <div class="book">
+    <h3>Rich Dad Poor Dad</h3>
+    <p>Author: Robert Kiyosaki</p>
+  </div>
+
+  <div class="book">
+    <h3>Atomic Habits</h3>
+    <p>Author: James Clear</p>
+  </div>
+</div>
+
+<footer>
+  © 2026 Smart Library | Powered by Watson Assistant
+</footer>
+
+<!-- Watson Assistant Chatbot -->
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "1ce52ad7-078b-434c-b073-33ca1b8e3005",
+    region: "eu-de",
+    serviceInstanceID: "63df9709-ade0-491a-a2ce-2ffea9612eef",
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
   });
-}
+</script>
+
+</body>
+</html>
